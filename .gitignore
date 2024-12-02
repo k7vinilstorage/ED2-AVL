@@ -4,6 +4,7 @@
 # Ignore log files
 *.log
 *.exe
+*.code-workspace
 
 # Ignore IDE configuration files
 .vscode/
