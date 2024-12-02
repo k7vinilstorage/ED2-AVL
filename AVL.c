@@ -28,7 +28,7 @@ Arv * criar(Arv *arvore,int numero){
     if(arvore == NULL){
         return criaFolha(numero);
     }else if(arvore->valor == numero){
-        return;
+        return arvore;
     }else if(arvore->valor < numero){
         arvore->dir = criar(arvore->dir,numero);
     }else{
@@ -52,3 +52,5 @@ int altura(Arv* arvore){
     }
     
 }
+
+
