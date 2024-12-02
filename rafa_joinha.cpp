@@ -22,15 +22,28 @@ typedef struct avl_tree{
 
 
 
-void inserir_arvore_AVL(int valor){
-
-
+void inserir_arvore_AVL(avl* no_prim, int valor){
+    if(no_prim->no == NULL){
+        no_prim->no = valor;
+        no_prim->dir = NULL;
+        no_prim->esq = NULL;
+    }else if(no_prim->no < valor){
+        inserir_arvore_AVL(no_prim->dir, valor);
+    }else{
+        inserir_arvore_AVL(no_prim->esq, valor);
+    }
 }
 
+int altura_avl(avl* raiz){
+    int alt = 0;
+    
 
+return alt;
+}
 
 int main(){
-
+    avl* no_prim = (avl*)malloc(sizeof(avl));
+    no_prim->no = NULL;
 
 
     return 0;
