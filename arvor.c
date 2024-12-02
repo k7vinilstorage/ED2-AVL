@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//afrogus
+
 typedef struct arv
 {
     int valor;
