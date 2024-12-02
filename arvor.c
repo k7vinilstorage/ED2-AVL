@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//amogus
+
 typedef struct arv
 {
     int valor;
