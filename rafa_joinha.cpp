@@ -35,10 +35,17 @@ void inserir_arvore_AVL(avl* no_prim, int valor){
 }
 
 int altura_avl(avl* raiz){
-    int alt = 0;
-    
-
-return alt;
+    if(raiz->no == NULL){
+        return -1;
+    }else{
+        int dir = altura_avl(raiz->dir),
+        esq = altura_avl(raiz->esq);
+        if(dir > esq){
+            return dir + 1;
+        }else{
+            return esq + 1;
+        }
+    }
 }
 
 int main(){
