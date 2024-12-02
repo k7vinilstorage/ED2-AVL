@@ -10,7 +10,7 @@ typedef struct Node {
 } Node;
 
 // Função para obter a altura de um nó
-int height(Node* node) {]
+int height(Node* node) {
     int altura = 0;
     if (node->left != NULL)
         altura = height(node->left) + 1;
