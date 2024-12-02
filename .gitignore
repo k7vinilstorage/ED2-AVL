@@ -1,0 +1,10 @@
+# Ignore Mac system files
+.DS_Store
+
+# Ignore log files
+*.log
+*.exe
+
+# Ignore IDE configuration files
+.vscode/
+
