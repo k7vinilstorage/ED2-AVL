@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//amogus
+//afrogus
 
 typedef struct arv
 {
