@@ -2,13 +2,8 @@
 // rafael munhoz castro
 //arthur henrique  jardin da cunha pinto
 //joão alberto torezan
-
-
-
-
 #include <stdio.h>
 #include <stdlib.h>
-
 typedef struct arv
 {
     int valor;
