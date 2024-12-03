@@ -10,34 +10,35 @@
 //valor = 0, imprimir o balanço (-1, 0 ou 1) da raiz, excluir a árvore e iniciar nova leitura
 //valor = -1, imprimir fim e finalizar o programa
 
-
 //usar scranf e printf
 
-typedef struct avl_tree{
+typedef struct avl_tree {
     int no;
     struct avl_tree* esq;
     struct avl_tree* dir;
 }avl;
 
+void cria_folha(int valor){
+    avl* no_prim = (avl*)malloc(sizeof(avl));
+    no_prim->no = valor;
+    no_prim->esq = NULL;
+    no_prim->dir = NULL;
+}
 
-
-
-void inserir_arvore_AVL(avl* no_prim, int valor){
-    if(no_prim->no == NULL){
-        no_prim->no = valor;
-        no_prim->dir = NULL;
-        no_prim->esq = NULL;
-    }else if(no_prim->no < valor){
+void inserir_arvore_AVL(avl* no_prim, int valor) {
+    if(no_prim->no == NULL) {
+        cria_folha(valor);
+    }else if(no_prim->no < valor) {
         inserir_arvore_AVL(no_prim->dir, valor);
-    }else{
+    }else {
         inserir_arvore_AVL(no_prim->esq, valor);
     }
 }
 
-int altura_avl(avl* raiz){
-    if(raiz->no == NULL){
+int altura_avl(avl* raiz) {
+    if(raiz->no == NULL) {
         return -1;
-    }else{
+    }else {
         int dir = altura_avl(raiz->dir),
         esq = altura_avl(raiz->esq);
         if(dir > esq){
@@ -48,7 +49,7 @@ int altura_avl(avl* raiz){
     }
 }
 
-int main(){
+int main() {
     avl* no_prim = (avl*)malloc(sizeof(avl));
     no_prim->no = NULL;
 
