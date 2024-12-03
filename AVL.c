@@ -20,29 +20,16 @@ Arv* criaFolha(int info) {
    return folha;
 }
 
-Arv * inserirArv(Arv *arvore, int numero){
-    if(arvore == NULL){
-        return criaFolha(numero);
-    }else if(arvore->valor == numero){
-        return arvore;
-    }else if(arvore->valor < numero){
-        arvore->dir = inserirArv(arvore->dir,numero);
-    }else{
-        arvore->esq = inserirArv(arvore->esq,numero);
-    }
-}
-
-Arv *inserir_arvore_AVL(Arv* arvore, int valor) {
+Arv *inserirArv(Arv* arvore, int valor) {
     if(arvore == NULL) {
         return criaFolha(valor);
     }else if(arvore->valor < valor) {
-        arvore->dir = inserir_arvore_AVL(arvore->dir, valor);
+        arvore->dir = inserirArv(arvore->dir, valor);
     }else {
-        arvore->esq = inserir_arvore_AVL(arvore->esq, valor);
+        arvore->esq = inserirArv(arvore->esq, valor);
     }
     return arvore;
 }
-
 
 int altura(Arv* arvore){
     if(arvore == NULL){
@@ -59,25 +46,20 @@ int altura(Arv* arvore){
     } 
 }
 
-void print2DTree(Arv* root, int space) {
-  // Caso base;
-  if (root == NULL)
-    return;
+void printArv(Arv* arvore, int space) {
+    if (arvore == NULL) {
+        return;
+    }
+    space += 5;
 
-  // Aumento da distância entre os níveis
-  space += 5;
+    printArv(arvore->dir, space);
 
-  // Avalia primeiro o nó direita
-  // Vai empilhar todas subárvores direitas;
-  print2DTree(root->dir, space);
+    for (int i = 5; i < space; i++) {
+        printf(" ");
+    }
+    printf("%d\n", arvore->valor);
 
-  // Imprime o nó no retorno da recursão
-    for (int i = 5; i < space; i++)
-      printf(" ");
-  printf("%d\n", root->valor);
-
-  // Avalia o nó esquerda
-  print2DTree(root->esq, space);
+    printArv(arvore->esq, space);
 }
 
 
@@ -85,18 +67,18 @@ int main() {
 
     Arv * pinheiro = NULL;
 
-    pinheiro = inserir_arvore_AVL(pinheiro, 147);
-    pinheiro = inserir_arvore_AVL(pinheiro, 7);
-    pinheiro = inserir_arvore_AVL(pinheiro, 10);
-    pinheiro = inserir_arvore_AVL(pinheiro, 15);
-    pinheiro = inserir_arvore_AVL(pinheiro, 1);
-    pinheiro = inserir_arvore_AVL(pinheiro, 4);
-    pinheiro = inserir_arvore_AVL(pinheiro, 80);
-    pinheiro = inserir_arvore_AVL(pinheiro, 9);
+    pinheiro = inserirArv(pinheiro, 147);
+    pinheiro = inserirArv(pinheiro, 7);
+    pinheiro = inserirArv(pinheiro, 10);
+    pinheiro = inserirArv(pinheiro, 15);
+    pinheiro = inserirArv(pinheiro, 1);
+    pinheiro = inserirArv(pinheiro, 4);
+    pinheiro = inserirArv(pinheiro, 80);
+    pinheiro = inserirArv(pinheiro, 9);
     
     printf("\n");
 
-    print2DTree(pinheiro, 0);
+    printArv(pinheiro, 0);
 
     return 0;
 }
