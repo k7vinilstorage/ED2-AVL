@@ -149,6 +149,7 @@ int main() {
     pinheiro = inserirArv(pinheiro, 14);
     pinheiro = inserirArv(pinheiro, 80);
     pinheiro = inserirArv(pinheiro, 9);
+    pinheiro = inserirArv(pinheiro, 84);
     
     printf("\n");
 
