@@ -100,9 +100,6 @@ Arv *RDE(Arv *arvore) {
 }
 
 Arv *inserirArv(Arv* arvore, int valor) {
-    int direita = altura(arvore->dir);
-    int esquerda = altura(arvore->esq);
-
     if(arvore == NULL) {
         return criaFolha(valor);
     }
@@ -112,6 +109,9 @@ Arv *inserirArv(Arv* arvore, int valor) {
     else {
         arvore->esq = inserirArv(arvore->esq, valor);
     }
+
+    int direita = altura(arvore->dir);
+    int esquerda = altura(arvore->esq);
 
     if((direita - esquerda) >= 2) {
         if(arvore->dir->esq == NULL) {
