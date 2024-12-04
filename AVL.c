@@ -133,48 +133,32 @@ Arv *inserirArv(Arv* arvore, int valor) {
     return arvore;
 }
 
+void printBal(Arv *arvore) {
+    int altura_dir = 0;
+    int altura_esq = 0;
 
-
-void printArv(Arv* arvore, int space) {
-    if (arvore == NULL) {
-        return;
-    }
-    space += 5;
-
-    printArv(arvore->dir, space);
-
-    for (int i = 5; i < space; i++) {
-        printf(" ");
-    }
-    printf("%d\n", arvore->valor);
-
-    printArv(arvore->esq, space);
+    altura_dir = altura(arvore->dir);
+    altura_esq = altura(arvore->esq);
+    printf("Bal = %d\n", (altura_dir - altura_esq));
 }
-
 
 int main() {
 
     Arv * pinheiro = NULL;
     int valor = 0;
-    int altura_dir = 0;
-    int altura_esq = 0;
+   
 
     while(true) {
         scanf("%d", &valor);
-
         if(valor == 0){
-            altura_dir = altura(pinheiro->dir);
-            altura_esq = altura(pinheiro->esq);
-            printf("Bal = %d\n", (altura_dir - altura_esq));
-
+            printBal(pinheiro);
             pinheiro = Excluir(pinheiro);
-
-            // imprimir o balanço (-1, 0 ou 1) da raiz, excluir a árvore e iniciar nova leitura
-
-        }else if(valor == -1){
+        }
+        else if(valor == -1) {
             printf("\nFIM\n");
             break;
-        }else{
+        }
+        else {
             pinheiro = inserirArv(pinheiro, valor);
         }
     }
