@@ -1,20 +1,9 @@
 // vinicius souza dias
 // rafael munhoz castro
-//arthur henrique  jardin da cunha pinto
-//joão alberto torezan
+// arthur henrique jardim da cunha pinto
+// joão alberto benaci torezan
 
 
-//entrada 1 int por linha
-//para cada valor int positivo, inserir na árvore AVL
-    //cada rotação deve imprimir: 
-        //RSD[valor dos nós P] "rot simples a direita"
-        //RSE[valor do nó P]   "rot simples a esquerda"
-        //RDD[valor do nó P]   "rot dupla a direita"
-        //RDE[valor do nó P]   "rot dupla a esquerda"
-//valor = 0, imprimir o balanço (-1, 0 ou 1) da raiz, excluir a árvore e iniciar nova leitura
-//valor = -1, imprimir fim e finalizar o programa
-
-//usar scranf e printf
 
 #include <stdio.h>
 #include <stdlib.h>
