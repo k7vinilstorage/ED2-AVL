@@ -49,6 +49,18 @@ int altura(Arv* arvore){
     } 
 }
 
+Arv *Excluir(Arv* arvore) {
+    if(arvore == NULL) {
+        return 0;
+    }
+    else{
+        arvore->dir = Excluir(arvore->dir);
+        arvore->esq = Excluir(arvore->esq);
+    }
+    free(arvore);
+    return NULL;
+}
+
 Arv *RSE(Arv * arvore) {
     printf("RSE %d\n", arvore->valor);
     arvore->dir->esq = arvore;
@@ -155,12 +167,12 @@ int main() {
             altura_esq = altura(pinheiro->esq);
             printf("Bal = %d\n", (altura_dir - altura_esq));
 
-            pinheiro = NULL;
+            pinheiro = Excluir(pinheiro);
 
             // imprimir o balanço (-1, 0 ou 1) da raiz, excluir a árvore e iniciar nova leitura
 
         }else if(valor == -1){
-            printf("\n FIM \n");
+            printf("\nFIM\n");
             break;
         }else{
             pinheiro = inserirArv(pinheiro, valor);
@@ -170,21 +182,3 @@ int main() {
 
     return 0;
 }
-
- // Caso de teste:
-
-    // pinheiro = inserirArv(pinheiro, 13);
-    // pinheiro = inserirArv(pinheiro, 7);
-    // pinheiro = inserirArv(pinheiro, 5);
-    // pinheiro = inserirArv(pinheiro, 15);
-    // pinheiro = inserirArv(pinheiro, 1);
-    // pinheiro = inserirArv(pinheiro, 4);
-    // pinheiro = inserirArv(pinheiro, 14);
-    // pinheiro = inserirArv(pinheiro, 80);
-    // pinheiro = inserirArv(pinheiro, 9);
-    // pinheiro = inserirArv(pinheiro, 84);
-    
-    // printf("\n");
-
-    // printArv(pinheiro, 0);
-    // printf("\n");
