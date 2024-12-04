@@ -37,13 +37,15 @@ Arv* criaFolha(int info) {
 int altura(Arv* arvore){
     if(arvore == NULL){
         return 0;
-    }else{
+    }
+    else {
         int direita = altura(arvore->dir);
         int esquerda = altura(arvore->esq);
 
         if(direita > esquerda){
             return direita + 1;
-        }else{
+        }
+        else {
             return esquerda + 1;
         }
     } 
@@ -53,7 +55,7 @@ Arv *Excluir(Arv* arvore) {
     if(arvore == NULL) {
         return 0;
     }
-    else{
+    else {
         arvore->dir = Excluir(arvore->dir);
         arvore->esq = Excluir(arvore->esq);
     }
@@ -98,21 +100,20 @@ Arv *RDE(Arv *arvore) {
 }
 
 Arv *inserirArv(Arv* arvore, int valor) {
+    int direita = altura(arvore->dir);
+    int esquerda = altura(arvore->esq);
+
     if(arvore == NULL) {
         return criaFolha(valor);
-    }else if(arvore->valor < valor) {
+    }
+    else if(arvore->valor < valor) {
         arvore->dir = inserirArv(arvore->dir, valor);
-    }else {
+    }
+    else {
         arvore->esq = inserirArv(arvore->esq, valor);
     }
 
-    int direita = altura(arvore->dir),
-    esquerda = altura(arvore->esq);
-
-    //printf("Estou: %d, Valor inserido: %d, altura da direita do estou: %d, a msm coisa so que esquerda: %d\n",arvore->valor, valor, direita, esquerda); REMOVER DEPOIS
-    
     if((direita - esquerda) >= 2) {
-        //printf("desbalanceado no estou: direita\n"); REMOVER DEPOIS
         if(arvore->dir->esq == NULL) {
             arvore = RSE(arvore);
         }
@@ -120,8 +121,8 @@ Arv *inserirArv(Arv* arvore, int valor) {
             arvore = RDE(arvore);
         }
     }
-     if((esquerda - direita) >= 2) {
-        //printf("desbalanceado no estou: esquerda\n");  REMOVER DEPOIS
+
+    if((esquerda - direita) >= 2) {
         if(arvore->esq->dir == NULL) {
             arvore = RSD(arvore);
         }
@@ -129,7 +130,7 @@ Arv *inserirArv(Arv* arvore, int valor) {
             arvore = RDD(arvore);
         }
     }
-    //printf("\n"); REMOVER DEPOIS
+
     return arvore;
 }
 
@@ -143,11 +144,9 @@ void printBal(Arv *arvore) {
 }
 
 int main() {
-
     Arv * pinheiro = NULL;
     int valor = 0;
    
-
     while(true) {
         scanf("%d", &valor);
         if(valor == 0){
@@ -162,7 +161,6 @@ int main() {
             pinheiro = inserirArv(pinheiro, valor);
         }
     }
-
 
     return 0;
 }
