@@ -49,21 +49,24 @@ int altura(Arv* arvore){
     } 
 }
 
-Arv *RD(Arv * arvore) {
+Arv *RSE(Arv * arvore) {
+    printf("RSE %d\n", arvore->valor);
     arvore->dir->esq = arvore;
     arvore = arvore->dir;
     arvore->esq->dir = NULL;
     return arvore;
 }
 
-Arv *RE(Arv * arvore) {
+Arv *RSD(Arv * arvore) {
+    printf("RSD %d\n", arvore->valor);
     arvore->esq->dir = arvore;
     arvore = arvore->esq;
     arvore->dir->esq = NULL;
     return arvore;
 }
 
-Arv *RDE(Arv *arvore) {
+Arv *RDD(Arv *arvore) {
+    printf("RDD %d\n", arvore->valor);
     arvore->esq->dir->dir = arvore;
     arvore->esq->dir->esq = arvore->esq;
     arvore = arvore->esq->dir;
@@ -72,7 +75,8 @@ Arv *RDE(Arv *arvore) {
     return arvore;
 }
 
-Arv *RDD(Arv *arvore) {
+Arv *RDE(Arv *arvore) {
+    printf("RDE %d\n", arvore->valor);
     arvore->dir->esq->esq = arvore;
     arvore->dir->esq->dir = arvore->dir;
     arvore = arvore->dir->esq;
@@ -93,27 +97,27 @@ Arv *inserirArv(Arv* arvore, int valor) {
     int direita = altura(arvore->dir),
     esquerda = altura(arvore->esq);
 
-    printf("Estou: %d, Valor inserido: %d, altura da direita do estou: %d, a msm coisa so que esquerda: %d\n",arvore->valor, valor, direita, esquerda);
+    //printf("Estou: %d, Valor inserido: %d, altura da direita do estou: %d, a msm coisa so que esquerda: %d\n",arvore->valor, valor, direita, esquerda); REMOVER DEPOIS
     
     if((direita - esquerda) >= 2) {
-        printf("desbalanceado no estou: direita\n");
+        //printf("desbalanceado no estou: direita\n"); REMOVER DEPOIS
         if(arvore->dir->esq == NULL) {
-            arvore = RD(arvore);
-        }
-        else {
-            arvore = RDD(arvore);
-        }
-    }
-     if((esquerda - direita) >= 2) {
-        printf("desbalanceado no estou: esquerda\n");
-        if(arvore->esq->dir == NULL) {
-            arvore = RE(arvore);
+            arvore = RSE(arvore);
         }
         else {
             arvore = RDE(arvore);
         }
     }
-    printf("\n");
+     if((esquerda - direita) >= 2) {
+        //printf("desbalanceado no estou: esquerda\n");  REMOVER DEPOIS
+        if(arvore->esq->dir == NULL) {
+            arvore = RSD(arvore);
+        }
+        else {
+            arvore = RDD(arvore);
+        }
+    }
+    //printf("\n"); REMOVER DEPOIS
     return arvore;
 }
 
@@ -139,44 +143,48 @@ void printArv(Arv* arvore, int space) {
 int main() {
 
     Arv * pinheiro = NULL;
+    int valor = 0;
+    int altura_dir = 0;
+    int altura_esq = 0;
 
-    pinheiro = inserirArv(pinheiro, 13);
-    pinheiro = inserirArv(pinheiro, 7);
-    pinheiro = inserirArv(pinheiro, 5);
-    pinheiro = inserirArv(pinheiro, 15);
-    pinheiro = inserirArv(pinheiro, 1);
-    pinheiro = inserirArv(pinheiro, 4);
-    pinheiro = inserirArv(pinheiro, 14);
-    pinheiro = inserirArv(pinheiro, 80);
-    pinheiro = inserirArv(pinheiro, 9);
-    pinheiro = inserirArv(pinheiro, 84);
-    
-    printf("\n");
+    while(true) {
+        scanf("%d", &valor);
 
-    printArv(pinheiro, 0);
-    printf("\n");
+        if(valor == 0){
+            altura_dir = altura(pinheiro->dir);
+            altura_esq = altura(pinheiro->esq);
+            printf("Bal = %d\n", (altura_dir - altura_esq));
 
+            pinheiro = NULL;
 
+            // imprimir o balanço (-1, 0 ou 1) da raiz, excluir a árvore e iniciar nova leitura
 
-/* 
-Arv * pinheiro = NULL;
-int valor = 0;
-
-while(){
-    scanf("%d", &valor);
-
-    if(valor == 0){
-
-        // imprimir o balanço (-1, 0 ou 1) da raiz, excluir a árvore e iniciar nova leitura
-
-    }else if(valor == -1){
-        printf("\n FIM");
-        break;
-    }else{
-        pinheiro = inserirArv(pinheiro, valor);
+        }else if(valor == -1){
+            printf("\n FIM \n");
+            break;
+        }else{
+            pinheiro = inserirArv(pinheiro, valor);
+        }
     }
-}
-*/
+
 
     return 0;
 }
+
+ // Caso de teste:
+
+    // pinheiro = inserirArv(pinheiro, 13);
+    // pinheiro = inserirArv(pinheiro, 7);
+    // pinheiro = inserirArv(pinheiro, 5);
+    // pinheiro = inserirArv(pinheiro, 15);
+    // pinheiro = inserirArv(pinheiro, 1);
+    // pinheiro = inserirArv(pinheiro, 4);
+    // pinheiro = inserirArv(pinheiro, 14);
+    // pinheiro = inserirArv(pinheiro, 80);
+    // pinheiro = inserirArv(pinheiro, 9);
+    // pinheiro = inserirArv(pinheiro, 84);
+    
+    // printf("\n");
+
+    // printArv(pinheiro, 0);
+    // printf("\n");
