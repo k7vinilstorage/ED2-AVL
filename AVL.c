@@ -141,7 +141,7 @@ int main() {
             pinheiro = Excluir(pinheiro);
         }
         else if(valor == -1) {
-            printf("\nFIM\n");
+            printf("FIM\n");
             break;
         }
         else if(valor > 0){
