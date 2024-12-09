@@ -144,7 +144,7 @@ int main() {
             printf("\nFIM\n");
             break;
         }
-        else {
+        else if(valor > 0){
             pinheiro = inserirArv(pinheiro, valor);
         }
     }
