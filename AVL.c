@@ -3,8 +3,6 @@
 // arthur henrique jardim  da cunha pinto
 // joão alberto benaci torezan
 
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
