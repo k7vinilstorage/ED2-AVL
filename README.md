@@ -3,7 +3,7 @@
 
 Esse projeto faz parte do processo de avaliação da disciplina de Estrutura de Dados 2 do curso de Engenharia de Computação da UTFPR-CP.
 
-O programa tem como objetivo receber valores inteiros e adicionalos em uma árvore AVL realizando o balanceamento da mesma quando necessário.
+O programa tem como objetivo receber valores inteiros e adicioná-los em uma árvore AVL realizando o balanceamento da mesma quando necessário.
 
 ## Autores
 
