@@ -5,8 +5,9 @@
 *.log
 *.exe
 *.code-workspace
-.gitignore
 
 # Ignore IDE configuration files
 .vscode/
 
+AVL
+.gitignore
