@@ -1,6 +1,6 @@
 // vinicius souza dias
 // rafael munhoz castro
-// arthur henrique jardim da cunha pinto
+// arthur henrique jardim  da cunha pinto
 // joão alberto benaci torezan
 
 
@@ -42,7 +42,7 @@ int altura(Arv* arvore){
 
 Arv *Excluir(Arv* arvore) {
     if(arvore == NULL) {
-        return 0;
+        return NULL;
     }
     else {
         arvore->dir = Excluir(arvore->dir);
