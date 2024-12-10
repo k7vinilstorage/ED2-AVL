@@ -67,22 +67,32 @@ Arv *RSD(Arv * arvore) {
 }
 
 Arv *RDD(Arv *arvore) {
+    Arv *aux1;
+    Arv *aux2;
+
     printf("RDD %d\n", arvore->valor);
+    aux1 = arvore->esq->dir->esq;
+    aux2 = arvore->esq->dir->dir;
     arvore->esq->dir->dir = arvore;
     arvore->esq->dir->esq = arvore->esq;
     arvore = arvore->esq->dir;
-    arvore->esq->dir = NULL;
-    arvore->dir->esq = NULL;
+    arvore->esq->dir = aux1;
+    arvore->dir->esq = aux2;
     return arvore;
 }
 
 Arv *RDE(Arv *arvore) {
-    printf("RDE %d\n", arvore->valor);
+    Arv *aux1;
+    Arv *aux2;
+
+    printf("RDD %d\n", arvore->valor);
+    aux1 = arvore->dir->esq->dir;
+    aux2 = arvore->dir->esq->esq;
     arvore->dir->esq->esq = arvore;
     arvore->dir->esq->dir = arvore->dir;
     arvore = arvore->dir->esq;
-    arvore->dir->esq = NULL;
-    arvore->esq->dir = NULL;
+    arvore->dir->esq = aux1;
+    arvore->esq->dir = aux2;
     return arvore;
 }
 
@@ -130,6 +140,23 @@ void printBal(Arv *arvore) {
     printf("Bal = %d\n", (altura_dir - altura_esq));
 }
 
+void print2DTree(Arv* root, int space) {
+  // Caso base;
+  if (root == NULL)
+    return;
+  // Aumento da distância entre os níveis
+  space += 5;
+  // Avalia primeiro o nó direita
+  // Vai empilhar todas subárvores direitas;
+  print2DTree(root->dir, space);
+  // Imprime o nó no retorno da recursão
+    for (int i = 5; i < space; i++)
+      printf(" ");
+  printf("%d\n", root->valor);
+  // Avalia o nó esquerda
+  print2DTree(root->esq, space);
+}
+
 int main() {
     Arv * pinheiro = NULL;
     int valor = 0;
@@ -137,8 +164,7 @@ int main() {
     while(true) {
         scanf("%d", &valor);
         if(valor == 0){
-            printBal(pinheiro);
-            pinheiro = Excluir(pinheiro);
+            print2DTree(pinheiro, 2);
         }
         else if(valor == -1) {
             printf("FIM\n");
