@@ -51,18 +51,24 @@ Arv *Excluir(Arv* arvore) {
 }
 
 Arv *RSE(Arv * arvore) {
+    Arv *aux;
+
     printf("RSE %d\n", arvore->valor);
+    aux = arvore->dir->esq;
     arvore->dir->esq = arvore;
     arvore = arvore->dir;
-    arvore->esq->dir = NULL;
+    arvore->esq->dir = aux;
     return arvore;
 }
 
 Arv *RSD(Arv * arvore) {
+    Arv *aux;
+    
     printf("RSD %d\n", arvore->valor);
+    aux = arvore->esq->dir;
     arvore->esq->dir = arvore;
     arvore = arvore->esq;
-    arvore->dir->esq = NULL;
+    arvore->dir->esq = aux;
     return arvore;
 }
 
@@ -111,7 +117,10 @@ Arv *inserirArv(Arv* arvore, int valor) {
     int esquerda = altura(arvore->esq);
 
     if((direita - esquerda) >= 2) {
-        if(arvore->dir->esq == NULL) {
+        direita = altura(arvore->dir->dir);
+        esquerda = altura(arvore->dir->esq);
+
+        if((direita - esquerda) >= 0) {
             arvore = RSE(arvore);
         }
         else {
@@ -120,7 +129,10 @@ Arv *inserirArv(Arv* arvore, int valor) {
     }
 
     if((esquerda - direita) >= 2) {
-        if(arvore->esq->dir == NULL) {
+        esquerda = altura(arvore->esq->esq);
+        direita = altura(arvore->esq->dir);
+
+        if((esquerda - direita) >= 0) {
             arvore = RSD(arvore);
         }
         else {
@@ -140,23 +152,6 @@ void printBal(Arv *arvore) {
     printf("Bal = %d\n", (altura_dir - altura_esq));
 }
 
-void print2DTree(Arv* root, int space) {
-  // Caso base;
-  if (root == NULL)
-    return;
-  // Aumento da distância entre os níveis
-  space += 5;
-  // Avalia primeiro o nó direita
-  // Vai empilhar todas subárvores direitas;
-  print2DTree(root->dir, space);
-  // Imprime o nó no retorno da recursão
-    for (int i = 5; i < space; i++)
-      printf(" ");
-  printf("%d\n", root->valor);
-  // Avalia o nó esquerda
-  print2DTree(root->esq, space);
-}
-
 int main() {
     Arv * pinheiro = NULL;
     int valor = 0;
@@ -164,7 +159,8 @@ int main() {
     while(true) {
         scanf("%d", &valor);
         if(valor == 0){
-            print2DTree(pinheiro, 2);
+            printBal(pinheiro);
+            pinheiro = Excluir(pinheiro);
         }
         else if(valor == -1) {
             printf("FIM\n");
