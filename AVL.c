@@ -1,7 +1,7 @@
-// vinicius souza dias
-// rafael munhoz castro
-// arthur henrique jardim  da cunha pinto
-// joão alberto benaci torezan
+// vinicius souza dias 2562599
+// rafael munhoz castro 2564380
+// arthur henrique jardim  da cunha pinto 2564300
+// joão alberto benaci torezan 2564386
 
 #include <stdio.h>
 #include <stdlib.h>
